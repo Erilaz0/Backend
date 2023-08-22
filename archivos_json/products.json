@@ -1,0 +1,20 @@
+[
+	{
+		"title": "pan",
+		"img": "https://www.semana.com/resizer/BfQNqxqkCDyLVpo7dH2KaAUf6-I=/1280x720/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/TKJSHJK5IREDPBS4TD7QYGLXTI.jpg",
+		"price": "200",
+		"id": 1
+	},
+	{
+		"title": "arroz",
+		"img": "https://images.aws.nestle.recipes/original/cc1ed7245ed521b41e14c8c7ca0fa9f8_foto_arroz.jpg",
+		"price": "300",
+		"id": 2
+	},
+	{
+		"title": "soja",
+		"img": "./img/descarga.jpg",
+		"price": "400",
+		"id": 3
+	}
+]
