@@ -11,6 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "express": "^3.10.0",
-    "moment": "^2.29.4"
-  }
+    "moment": "^2.29.4",
+    "Router": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erilaz0/Backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Erilaz0/Backend/issues"
+  },
+  "homepage": "https://github.com/Erilaz0/Backend#readme"
 }

@@ -9,6 +9,7 @@ class ProductManager{
       
       this.products = []
       this.path = Path
+      this.data = JSON.parse(fs.readFileSync(this.path, "utf-8"));
    }
         
 
@@ -17,9 +18,12 @@ class ProductManager{
 
 
 
-     saveProducts(){
-
-      fs.writeFileSync(this.path,JSON.stringify(this.products,null,"\t"))
+     saveProducts(nuevaData){
+      
+      const dataUnida = []
+      dataUnida.push(...this.data)
+      dataUnida.push(nuevaData)
+      fs.writeFileSync(this.path,JSON.stringify(dataUnida ,null,"\t"))
 
      }
       
@@ -31,11 +35,21 @@ class ProductManager{
 
      updateProduct(id,field,value){
 
-      const productUpdate = this.products.find(product => product.id === id)
-      if(!productUpdate){console.log("ERROR")}
-      productUpdate[field] = value
-      this.saveProducts()
+      const productUpdate = this.data.find(product => product.id === id)
+      if(!productUpdate){
+         console.log("ERROR")
+                        }
+      else{
+         productUpdate[field] = value
 
+         const Actualizacion = this.data.map(item => (item.id === id ? productUpdate : item))
+         fs.writeFileSync(this.path,JSON.stringify(Actualizacion , null , "\t"))
+
+         
+
+
+
+          }
      }
 
 
@@ -55,37 +69,35 @@ class ProductManager{
 
 
 
-     addProducts(title,img,price,stock){
+     addProducts(title,img,price){
        let newProduct = {
           title,  //esto es como poner title:title , basta con solo poner las comas y el nombre
           img,
           price,
-          stock
+          
             }
        
-
-        if(this.products.length === 0){
+        
+        if(this.data.length === 0){
 
            newProduct.id = 1
 
         }
         else{
 
-           newProduct.id = this.products.length + 1
+           newProduct.id = this.data.length + 1
 
         }
 
+        this.saveProducts(newProduct)
 
-
-
-            this.products.push(newProduct)
-            this.saveProducts()
+        
 
      }
 
         getProductsforId(id){
-
-           let buscar = this.products.find((product)=>product.id === id)
+           const jsonData = fs.readFileSync(this.path, "utf-8");
+           let buscar = jsonData.find((product)=>product.id === id)
            if(buscar){return buscar}
            else{console.log("Not Found")} 
 
@@ -94,7 +106,9 @@ class ProductManager{
 
         getProducts(){
 
-        return this.products
+         const jsonData = fs.readFileSync(this.path, "utf-8");
+         const products = JSON.parse(jsonData);
+         return products;
 
         }
 
